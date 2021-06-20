@@ -173,6 +173,11 @@ export default {
   },
 
   methods: {
+    /**
+     * Sets up the search bar for the name column
+     * A messy implementation but produces the desired affect
+     * @returns {boolean}
+     */
     inputSetup() {
       return (
               <div style={{ textAlign: 'center', display: 'flex' }}>
@@ -186,6 +191,11 @@ export default {
       this.pokemonArray = this.pokemonArrayDefault.filter(item => item.name.includes(value.target.value))
     },
 
+    /**
+     * Set the colour of the pokemon types to match the colour used on online sites to make them look distinct
+     * @param value
+     * @returns {string}
+     */
     typeColor(value) {
       console.log('value', value)
       switch (value) {
@@ -230,6 +240,11 @@ export default {
       }
     },
 
+    /**
+     * Access the pokemon api and retrieves a list of the first 300 pokemon listed
+     * It then makes seperate calls within to grab individual details of the pokemon to build out a profile,
+     * adding it into an array of objects to display the information across the table.
+     */
     getPokemonData() {
       axios.get('https://pokeapi.co/api/v2/pokemon?limit=300',).then((response) => {
         this.$data.dataSource = response.data.results;
